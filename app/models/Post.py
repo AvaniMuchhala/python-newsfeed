@@ -12,7 +12,9 @@ class Post(Base):
     user_id = Column(Integer, ForeignKey('users.id'))
     created_at = Column(DateTime, default=datetime.now)
     updated_at = Column(DateTime, default=datetime.now, onupdate=datetime.now)
+
     user = relationship('User')
-    
+    # Deleting post from DB deletes all its comments
+    comments = relationship('Comment', cascade='all,delete')
 
 
